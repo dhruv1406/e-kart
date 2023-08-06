@@ -6,7 +6,7 @@ const Footer = () => {
         <div className='flex justify-start gap-28'>
             <div className='flex-1'>
               <h1 className='text-xl font-bold'>E-Kart</h1>
-              <p className='text-md pt-2 w-30'>Dunia ka ek lauta free e-commerce site jahan sab free me milta hai. Aao aur loot lo.</p>
+              <p className='text-md pt-2 w-30'>Shop from the comfort of your home.</p>
             </div>
             <div className='flex-1'>
               <h1 className='text-xl font-bold'>Links</h1>
