@@ -12,23 +12,35 @@ const Product = ({ productData }) => {
   const addToCart = () => {
     const cartItem = { ...productData };
     const existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const updatedCartItems = [...existingCartItems, cartItem];
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    alert("Item added to cart.");
+
+    if(existingCartItems.length > 0 ){
+      const foundItem = existingCartItems.find((cartItem) => cartItem.id === productData.id);
+      if(foundItem){
+        alert("Item already added");
+      }else{
+        const updatedCartItems = [...existingCartItems, cartItem];
+        localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+        alert("Item added to cart.");
+      }
+    } else{
+      const updatedCartItems = [cartItem];
+      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+      alert("Item added to cart.");
+    }
   };
 
   return (
-    <section className="mx-20 h-screen">
-      <div className="w-full h-full flex justify-center items-center">
+    <section className="mx-20 h-screen pb-4">
+      <div className="w-full h-screen flex justify-center items-center">
         <div className=" px-5 mx-auto">
           <div className="w-3/5 mx-auto flex flex-wrap shadow-2xl rounded-xl p-10">
             <div className="lg:w-1/2 flex justify-center items-center">
               <Image
                 src={image}
                 alt={title}
-                width={400}
-                height={400}
-                className=" w-full h-150 object-cover object-center rounded"
+                width={200}
+                height={200}
+                className=" w-full h-60 object-contain object-center rounded"
                 />
             </div>
             <div className="flex flex-col justify-center lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

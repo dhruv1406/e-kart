@@ -20,10 +20,18 @@ const Products = () => {
   }, []);
 
   const addToCart = (item) => {
+
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    cartItems.push(item);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    alert("Item added to the cart.");
+    const foundItem = cartItems.find((cartItem) => cartItem && cartItem.id === item.id)
+
+    if(foundItem){
+    alert("Item already added.")
+    }else{
+      
+      cartItems.push(item);
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      alert("Item added to cart");
+    }
   };
 
   if (loading) {
@@ -36,9 +44,9 @@ const Products = () => {
       <h1 className='text-center text-4xl font-bold py-5'>PRODUCTS</h1>
       <div className="px-5 py-15 mx-auto">
         <div className="grid grid-cols-4 gap-5">
-          {product.map((item, index) => {
+          {product.map((item) => {
             return (
-              <div className="bg-white py-4 px-8 w-80 h-100 rounded-lg shadow-2xl" key={index}>
+              <div className="bg-white py-4 px-8 h-100 rounded-lg shadow-2xl" key={item.id}>
                 <Link href={`/products/${item.id}`} className="block relative h-48 cursor-pointer overflow-hidden" onClick={() => console.log(item.id)}> 
                   <Image
                     src={item.image}
