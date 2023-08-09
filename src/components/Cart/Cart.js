@@ -78,8 +78,8 @@ const Cart = () => {
   return (
     <>
     <Header cartItem={cartItems}/>
-    <div className="bg-gray-100 pt-12 pb-24 mb-10">
-      <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+    <div className="bg-gray-100 pt-16 pb-24 mb-24">
+      <h1 className="mt-20 text-center text-2xl font-bold">Cart Items</h1>
       <div className="mx-auto max-w-7xl justify-center px-6 py-7 flex gap-10">
         <div className="rounded-lg md:w-2/3">
           {cartItems.length === 0 ? (

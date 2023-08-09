@@ -5,7 +5,7 @@ const MiniCart = ({isOpen, cartItem, getTotalPrice}) => {
   return (
     <div className={`h-[100%] w-[25%] bg-white text-center fixed top-[85px] shadow-lg ${isOpen ? "right-[0]" : ""}`}>
       <div className='p-5 h-[75vh] overflow-y-auto'>
-          <h1 className='pt-5 pb-5 font-bold text-xl'>{cartItem.length} items in your Cart</h1>
+          <h1 className='pt-5 pb-5 font-bold text-xl'>{cartItem.length} {(cartItem.length>0) ? "items" : "item"} in your Cart</h1>
           {cartItem.map((item, index) => (
             <div key={index} className='flex mt-[10px] mb-[10px] gap-[10px]'>
               <div className='flex-1'>
@@ -16,7 +16,7 @@ const MiniCart = ({isOpen, cartItem, getTotalPrice}) => {
             </div>
           ))}
       </div>
-      <div className='text-xl mt-6 font-bold '>Total Price: &#8377;{getTotalPrice()}</div>    
+      <div className='text-xl mt-6 font-bold '>Total Price: &#8377;{getTotalPrice().toFixed(2)}</div>    
       <Link className='pt-3 text-lg underline text-indigo-400' href={'/cart'}>
         View and edit cart
       </Link>
