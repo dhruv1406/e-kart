@@ -14,6 +14,7 @@ const getProductDetails = async (id) => {
 }
 
 const ProductDetails = ({ params }) => {
+  const [cartItem, setCartItem] = useState([]);
   const { id } = params;
 
   const [product, setProduct] = useState(null);
@@ -38,7 +39,10 @@ const ProductDetails = ({ params }) => {
   }
 
   return (
-    <Product productData={product} />
+    <>
+    <Header cartItem={cartItem}/>
+    <Product productData={product} setCartItem={setCartItem}/>
+    </>
   );
 };
 

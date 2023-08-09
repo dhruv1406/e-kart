@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Link from "next/link";
+import Header from "../Header/Header";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -75,6 +76,8 @@ const Cart = () => {
   }
 
   return (
+    <>
+    <Header cartItem={cartItems}/>
     <div className="bg-gray-100 pt-12 pb-24 mb-10">
       <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
       <div className="mx-auto max-w-7xl justify-center px-6 py-7 flex gap-10">
@@ -158,6 +161,7 @@ const Cart = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

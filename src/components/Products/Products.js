@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Products = () => {
+const Products = ({setCartItem}) => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,6 +31,7 @@ const Products = () => {
       cartItems.push(item);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       alert("Item added to cart");
+      setCartItem(cartItems)
     }
   };
 
@@ -40,7 +41,7 @@ const Products = () => {
 
 
   return (
-    <section className=" body-font px-10 pb-20">
+    <section className=" body-font px-10 pb-20 mt-24">
       <h1 className='text-center text-4xl font-bold py-5'>PRODUCTS</h1>
       <div className="px-5 py-15 mx-auto">
         <div className="grid grid-cols-4 gap-5">

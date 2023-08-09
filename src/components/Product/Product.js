@@ -1,11 +1,19 @@
 'use client';
-import React from "react";
+import React, { useEffect } from "react";
 
 import '@smastrom/react-rating/style.css'
 import { Rating } from '@smastrom/react-rating'
 import Image from "next/image";
 
-const Product = ({ productData }) => {
+const Product = ({ productData, setCartItem }) => {
+  
+  useEffect(() => {
+    const storedCartItem = JSON.parse(localStorage.getItem('cartItems'));
+    if(storedCartItem){
+      setCartItem(storedCartItem);
+    }
+  }, []);
+
   const { title, description, price, image, rating } = productData;
   const { rate, count } = rating;
 
@@ -21,6 +29,7 @@ const Product = ({ productData }) => {
         const updatedCartItems = [...existingCartItems, cartItem];
         localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
         alert("Item added to cart.");
+        setCartItem(updatedCartItems);
       }
     } else{
       const updatedCartItems = [cartItem];
@@ -30,6 +39,8 @@ const Product = ({ productData }) => {
   };
 
   return (
+    <>
+    
     <section className="mx-20 h-screen pb-4">
       <div className="w-full h-screen flex justify-center items-center">
         <div className=" px-5 mx-auto">
@@ -68,6 +79,7 @@ const Product = ({ productData }) => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
